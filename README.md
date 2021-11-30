@@ -21,4 +21,3 @@ $ kubectl -n jenkins apply -f controller/role_binding_jenkins.yaml
 ```bash
 $ kubectl -n jenkins -n jenkins-operator apply -f operator/operator.yaml
 ```
-

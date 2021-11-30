@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-jenkins
+spec:
+  rules:
+  - host: "jenkins.k3s.zremal.org"
+    http:
+      paths:
+      - pathType: Prefix
+        backend:
+          service:
+            name: jenkins-operator-http-jenkins
+            port:
+              number: 8080
+        path: /
