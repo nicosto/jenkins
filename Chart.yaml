@@ -1,0 +1,8 @@
+apiVersion: v2
+name: helmchart-jenkins-operator
+version: 0.1.0
+
+dependencies:
+- name: jenkins-operator
+  version: 0.5.3
+  repository: "https://raw.githubusercontent.com/jenkinsci/kubernetes-operator/master/chart"

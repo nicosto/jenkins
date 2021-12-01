@@ -35,7 +35,7 @@ spec:
     containers:
     - name: jenkins-master
       imagePullPolicy: Always
-      image: jenkins/jenkins:2.263.4-lts-alpine
+      # image: jenkins/jenkins:2.263.4-lts-alpine
 
       backup:
         enabled: false
