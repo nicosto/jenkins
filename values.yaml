@@ -8,7 +8,7 @@ jenkins-operator:
     image: jenkins/jenkins:lts-alpine
     basePlugins:
       - name: kubernetes
-        version: "1.30.04"
+        version: "1.30.11"
       - name: workflow-job
         version: "2.42"
       - name: workflow-aggregator
