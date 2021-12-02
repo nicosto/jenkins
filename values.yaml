@@ -21,22 +21,7 @@ jenkins-operator:
     #   version: "1.46"
     # - name: kubernetes-credentials-provider
     #   version: 0.15
-    basePlugins:
-      - name: kubernetes
-        version: "1.28.6"
-      - name: workflow-job
-        version: "2.40"
-      - name: workflow-aggregator
-        version: "2.6"
-      - name: git
-        version: "4.5.0"
-      - name: job-dsl
-        version: "1.77"
-      - name: configuration-as-code
-        version: "1.46"
-      - name: kubernetes-credentials-provider
-        version: "0.15"
-
+  
     plugins: []
 
     backup:
