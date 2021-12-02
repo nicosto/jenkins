@@ -1,52 +1,124 @@
-apiVersion: jenkins.io/v1alpha2
-kind: Jenkins
-metadata:
-  name: zremal
-  namespace: jenkins
-  master:
+
+
+
+jenkins-operator:
+  jenkins:
+    name: jenkins
+    namespace: jenkins
+    image: jenkins/jenkins:lts-alpine
     # basePlugins:
-    #   - name: kubernetes
-    #     version: "1.29.0"
-    #   - name: workflow-job
-    #     version: "2.40"
-    #   - name: workflow-aggregator
-    #     version: "2.6"
-    #   - name: git
-    #     version: "4.6.0"
-    #   - name: job-dsl
-    #     version: "1.77"
-    #   - name: configuration-as-code
-    #     version: "1.47"
-    #   - name: kubernetes-credentials-provider
-    #     version: "0.16"
-    plugins:
-      - name: prometheus
-        version: "2.0.10"
-      # - name: credentials
-      #   version: "2.3.15"
-      # - name: plain-credentials
-      #   version: "1.7"
-      # - name: dependency-track
-      #   version: "3.1.0"
-      # - name: pipeline-utility-steps
-      #   version: "2.6.1"
+    # - name: kubernetes
+    #   version: 1.28.6
+    # - name: workflow-job
+    #   version: "2.40"
+    # - name: workflow-aggregator
+    #   version: "2.6"
+    # - name: git
+    #   version: 4.5.0
+    # - name: job-dsl
+    #   version: "1.77"
+    # - name: configuration-as-code
+    #   version: "1.46"
+    # - name: kubernetes-credentials-provider
+    #   version: 0.15
+    basePlugins:
+      - name: kubernetes
+        version: "1.28.6"
+      - name: workflow-job
+        version: "2.40"
+      - name: workflow-aggregator
+        version: "2.6"
+      - name: git
+        version: "4.5.0"
+      - name: job-dsl
+        version: "1.77"
+      - name: configuration-as-code
+        version: "1.46"
+      - name: kubernetes-credentials-provider
+        version: "0.15"
 
-    containers:
-    - name: jenkins-master
-      imagePullPolicy: Always
-      image: jenkins/jenkins:lts-alpine
+    plugins: []
 
-      backup:
-        enabled: false
+    backup:
+      enabled: true
+      image: virtuslab/jenkins-operator-backup-pvc:v0.1.0
+      containerName: backup
+      interval: 30
 
-  configurationAsCode:
-    unclassified:
-      location:
-        url: http://jenkins.k3s.zremal.org:8080/
+    configuration:
+      configurationAsCode: {}
+      #    - configMapName: jenkins-casc
+      #      content: {}
 
-  seedJobs:
-    - id: jenkins-operator
-      targets: "jobs/*.jenkins"
-      description: "Jenkins Operator repository"
-      repositoryBranch: main
-      repositoryUrl: https://github.com/nicosto/jenkins-seed.git
+
+
+
+# apiVersion: jenkins.io/v1alpha2
+# kind: Jenkins
+# metadata:
+#   name: zremal
+#   namespace: jenkins
+#   master:
+#     # basePlugins:
+#     #   - name: kubernetes
+#     #     version: "1.29.0"
+#     #   - name: workflow-job
+#     #     version: "2.40"
+#     #   - name: workflow-aggregator
+#     #     version: "2.6"
+#     #   - name: git
+#     #     version: "4.6.0"
+#     #   - name: job-dsl
+#     #     version: "1.77"
+#     #   - name: configuration-as-code
+#     #     version: "1.47"
+#     #   - name: kubernetes-credentials-provider
+#     #     version: "0.16"
+#     plugins:
+#       # - name: prometheus
+#       #   version: "2.0.8"
+#       # - name: credentials
+#       #   version: "2.3.15"
+#       # - name: plain-credentials
+#       #   version: "1.7"
+#       # - name: dependency-track
+#       #   version: "3.1.0"
+#       - name: pipeline-utility-steps
+#         version: "2.6.1"
+
+#     containers:
+#     - name: jenkins-master
+#       imagePullPolicy: Always
+#       image: jenkins/jenkins:lts-alpine
+
+#       backup:
+#         enabled: false
+
+#   configurationAsCode:
+#     unclassified:
+#       location:
+#         url: http://jenkins.k3s.zremal.org:8080/
+
+
+
+
+
+# apiVersion: jenkins.io/v1alpha2
+# kind: Jenkins
+# metadata:
+#   name: zremal
+#   namespace: jenkins
+# spec:
+#   master:
+#     disableCSRFProtection: false
+#     containers:
+#       - name: jenkins-controller
+#         image: jenkins/jenkins:lts-alpine
+#         imagePullPolicy: Always
+
+#   seedJobs:
+#     - id: jenkins-operator
+#       targets: "jobs/*.jenkins"
+#       description: "Jenkins Operator repository"
+#       repositoryBranch: main
+#       repositoryUrl: https://github.com/nicosto/jenkins-seed.git
