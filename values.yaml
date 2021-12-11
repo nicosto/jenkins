@@ -1,6 +1,3 @@
-
-
-
 jenkins-operator:
   jenkins:
     name: jenkins
@@ -22,7 +19,9 @@ jenkins-operator:
       - name: kubernetes-credentials-provider
         version: "0.20"
     
-    plugins: []
+    plugins:
+      - name: prometheus
+        version: "2.0.10"
 
     backup:
       enabled: true
