@@ -25,7 +25,7 @@ jenkins-operator:
 
     backup:
       enabled: true
-      image: virtuslab/jenkins-operator-backup-pvc:v0.1.0
+      image: virtuslab/jenkins-operator-backup-pvc:v0.1.1
       containerName: backup
       interval: 30
 
